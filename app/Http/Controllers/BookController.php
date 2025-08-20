@@ -52,7 +52,7 @@ class BookController extends Controller
             'description' => 'nullable'
         ]);
 
-        $book->uptadate($request->all());
+        $book->update($request->all());
 
         return redirect()->route('books.index')
                         ->with('sucess', 'Livro atualizado com sucesso!');
