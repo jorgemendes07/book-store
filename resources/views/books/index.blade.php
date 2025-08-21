@@ -1,46 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
-    <H1>Lista de livros</H1>
+@extends('layouts.app')
 
-    <a href="{{ route('books.create') }}">Novo Livro</a>
+@section('title', 'Lista de Livros')
 
-    @if(session('sucess'))
-        <p style="color:green">{{ session('success') }}</p>
+@section('content')
+    <h2 class="text-3xl font-bold mb-4">Lista de Livros</h2>
+    <button class="bg-cyan-500 text-white-100 rounded mb-4 text-white p-2 hover:bg-cyan-600">
+        <a href="{{ route('books.create') }}" class="mx-1">Adicionar Livro</a>
+    </button>
+    
+
+    @if(session('success'))
+        <p class="mb-4 text-green-600 font-medium">{{ session('success') }}</p>
     @endif
 
-    <table border="1" cellpadding="5" cellspacing="0">
-        <tr>
-            <th>Título</th>
-            <th>Autor</th>
-            <th>Ano</th>
-            <th></th>
-        </tr>
-        @foreach($books as $book)
-        <tr>
-            <td>{{ $book->title }}</td>
-            <td>{{ $book->author }}</td>
-            <td>{{ $book->year }}</td>
-            <td>
-                <a href="{{ route('books.edit', $book) }}">
-                    <i class="fa-solid fa-pen"></i>
-                </a>
-                <form action="{{ route('books.destroy', $book) }}" method="POST" style="display:inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
+    <table class="min-w-full bg-white rounded-lg shadow overflow-hidden ">
+        <thead class="bg-orange-200 text-gray-700">
+            <tr>
+                <th class="py-2 px-4 text-left">Título</th>
+                <th class="py-2 px-4 text-left">Autor</th>
+                <th class="py-2 px-4 text-left">Ano</th>
+                <th class="py-2 px-4 text-left"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($books as $book)
+                <tr class="border-b border-orange-300 hover:bg-orange-100">
+                    <td class="py-2 px-4">{{ $book->title }}</td>
+                    <td class="py-2 px-4">{{ $book->author }}</td>
+                    <td class="py-2 px-4">{{ $book->year }}</td>
+                    <td class="py-2 px-4 flex space-x-2">
+                        <a href="{{ route('books.edit', $book) }}" class="text-cyan-500 hover:text-cyan-600">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <form action="{{ route('books.destroy', $book) }}" method="POST" onsubmit="return confirm('Deseja realmente excluir?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-400 cursor-pointer hover:text-red-700">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
-</body>
-</html>
+@endsection
