@@ -35,7 +35,7 @@
                         <form action="{{ route('books.destroy', $book) }}" method="POST" onsubmit="return confirm('Deseja realmente excluir?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-400 cursor-pointer hover:text-red-700">
+                            <button type="submit" class="text-red-400 cursor-pointer hover:text-red-700 cursor-pointer">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
                         </form>
