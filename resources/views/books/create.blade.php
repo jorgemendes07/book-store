@@ -16,22 +16,22 @@
         </div>
     @endif
 
-    <form action="{{ route('books.store') }}" method="POST" class="border-2 border-orange-300 rounded p-10 flex flex-col gap-4">
+    <form action="{{ route('books.store') }}" method="POST" class="bg-white border-b border-t border-orange-300 rounded-lg p-10 flex flex-col gap-4">
         @csrf
 
-        <label for="title" class="font-bold">Título:</label>
-        <input type="text" name="title" value="{{ old('title') }}" required class="border-1 rounded bg-white">
+        <label for="title" class="font-bold  text-gray-700">Título:</label>
+        <input type="text" name="title" value="{{ old('title') }}" required class="border-1 rounded border-orange-300">
 
-        <label for="author" class="font-bold">Autor:</label>
-        <input type="text" name="author" value="{{ old('author') }}" required class="border-1 rounded bg-white">
+        <label for="author" class="font-bold  text-gray-700">Autor:</label>
+        <input type="text" name="author" value="{{ old('author') }}" required class="border-1 rounded border-orange-300">
 
-        <label for="year" class="font-bold">Ano:</label>
-        <input type="number" name="year" value="{{ old('year') }}" required class="border-1 rounded bg-white">
+        <label for="year" class="font-bold  text-gray-700">Ano:</label>
+        <input type="number" name="year" value="{{ old('year') }}" required class="border-1 rounded border-orange-300">
 
-        <label for="description"  class="font-bold">Descrição:</label>
-        <textarea name="description" rows="3" class="border-1 rounded bg-white">{{ old('description') }}</textarea>
+        <label for="description"  class="font-bold  text-gray-700">Descrição:</label>
+        <textarea name="description" rows="3" class="border-1 rounded border-orange-300">{{ old('description') }}</textarea>
 
-        <button type="submit" class="bg-cyan-500 text-white-100 rounded mb-2 text-white p-2 hover:bg-cyan-600 cursor-pointer">Salvar Livro</button>
+        <button type="submit" class="bg-cyan-500 text-white-100 rounded mb-2 text-white font-bold p-2 hover:bg-cyan-600 cursor-pointer">Salvar Livro</button>
     </form>
 
     

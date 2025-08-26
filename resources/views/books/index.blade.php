@@ -4,10 +4,10 @@
 
 @section('content')
     <h2 class="text-3xl font-bold mb-4">Lista de Livros</h2>
-    <button class="bg-cyan-500 text-white-100 rounded mb-4 text-white p-2 hover:bg-cyan-600">
-        <a href="{{ route('books.create') }}" class="mx-1">Adicionar Livro</a>
-    </button>
     
+    <a href="{{ route('books.create') }}" class="mx-1">
+        <button class="bg-cyan-500 text-white-100 rounded mb-4 text-white p-2 hover:bg-cyan-600 cursor-pointer">Adicionar Livro</button>
+    </a>
 
     @if(session('success'))
         <p class="mb-4 text-green-600 font-medium">{{ session('success') }}</p>
