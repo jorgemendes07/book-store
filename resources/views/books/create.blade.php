@@ -3,6 +3,7 @@
 @section('title', 'Adicionar Livro')
 
 @section('content')
+
 <main class="max-w-200 mx-auto">
     <h2 class="text-3xl font-bold mb-4">Adicionar livro</h2>
 
@@ -16,7 +17,7 @@
         </div>
     @endif
 
-    <form action="{{ route('books.store') }}" method="POST" class="bg-white border-b border-t border-orange-300 rounded-lg p-10 flex flex-col gap-4">
+    <form action="{{ route('books.store') }}" method="POST" class="bg-white border-b border-t border-orange-300 rounded-lg p-10 flex flex-col gap-4 mb-4">
         @csrf
 
         <label for="title" class="font-bold  text-gray-700">Título:</label>

@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar livro</title>
-</head>
-<body>
-    <h1>Editar Livro</h1>
+@extends('layouts.app')
+
+@section('title', 'Editar Livro')
+
+@section('content')
+
+<main class="max-w-200 mx-auto">
+    <h2 class="text-3xl font-bold mb-4">Editar Livro</h2>
 
     @if ($errors->any())
         <div style="color:red">
@@ -18,30 +17,26 @@
         </div>
     @endif
 
-    <form action="{{ route('books.update', $book->id) }}" method="POST">
+    <form action="{{ route('books.update', $book->id) }}" method="POST" class="bg-white border-b border-t border-orange-300 rounded-lg p-10 flex flex-col gap-4 mb-4">
         @csrf
         @method('PUT')
 
-        <label for="title">Título:</label>
-        <input type="text" name="title" value="{{ old('title', $book->title) }}" required>
-        <br><br>
+        <label for="title" class="font-bold  text-gray-700">Título:</label>
+        <input type="text" name="title" value="{{ old('title', $book->title) }}" required class="border-1 rounded border-orange-300">
 
-        <label for="author">Autor:</label>
-        <input type="text" name="author" value="{{ old('author', $book->author) }}" required>
-        <br><br>
+        <label for="author" class="font-bold  text-gray-700">Autor:</label>
+        <input type="text" name="author" value="{{ old('author', $book->author) }}" required class="border-1 rounded border-orange-300">
 
-        <label for="year">Ano:</label>
-        <input type="number" name="year" value="{{ old('year', $book->year) }}" required>
-        <br><br>
+        <label for="year" class="font-bold  text-gray-700">Ano:</label>
+        <input type="number" name="year" value="{{ old('year', $book->year) }}" required class="border-1 rounded border-orange-300">
 
-        <label for="description">Descrição:</label>
-        <textarea name="description">{{ old('description', $book->description) }}</textarea>
-        <br><br>
+        <label for="description" class="font-bold  text-gray-700">Descrição:</label>
+        <textarea name="description" rows="3" class="border-1 rounded border-orange-300">{{ old('description', $book->description) }}</textarea>
 
-        <button type="submit">Atualizar</button>
+        <button type="submit" class="bg-cyan-500 text-white-100 rounded mb-2 text-white font-bold p-2 hover:bg-cyan-600 cursor-pointer">Atualizar</button>
     </form>
 
-    <br>
-    <a href="{{ route('books.index') }}">Voltar</a>
-</body>
-</html>
+    <a href="{{ route('books.index') }}" class="text-2xl">Voltar</a>
+</main>
+        
+@endsection
