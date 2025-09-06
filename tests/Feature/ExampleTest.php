@@ -16,4 +16,12 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /** @test **/
+    public function it_can_show_books(): void
+    {
+        $response = $this->get('/books');
+
+        $response->assertSee([]);
+    }
 }

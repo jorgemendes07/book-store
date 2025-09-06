@@ -23,6 +23,7 @@ services:
             - sail
         depends_on:
             - mysql
+
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -40,16 +41,14 @@ services:
         networks:
             - sail
         healthcheck:
-            test:
-                - CMD
-                - mysqladmin
-                - ping
-                - '-p${DB_PASSWORD}'
+            test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
             retries: 3
             timeout: 5s
+
 networks:
     sail:
         driver: bridge
+
 volumes:
     sail-mysql:
         driver: local
