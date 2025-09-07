@@ -1,40 +1,25 @@
-# Etapa 1: PHP + Composer
-FROM php:8.2-fpm AS build
+FROM php:8.2-cli
 
-# Instalar dependências do sistema
+WORKDIR /app
+
+# Instala extensões do Laravel
 RUN apt-get update && apt-get install -y \
-    git unzip libzip-dev libpng-dev libonig-dev curl \
+    git unzip libzip-dev libpng-dev libonig-dev \
     && docker-php-ext-install pdo_mysql zip gd
 
-# Instalar Composer
+# Instala Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Definir diretório de trabalho
-WORKDIR /var/www
-
-# Copiar todos os arquivos do projeto
+# Copia arquivos
 COPY . .
 
-# Instalar dependências do Laravel
+# Instala dependências
 RUN composer install --no-dev --optimize-autoloader
 
-# Limpar caches do Laravel
-RUN php artisan config:clear && php artisan route:clear && php artisan view:clear
+# Gera chave
+RUN php artisan key:generate --show > /tmp/app.key && \
+    echo "APP_KEY=$(cat /tmp/app.key)" >> .env
 
-# Etapa 2: Nginx + PHP-FPM
-FROM nginx:alpine
+EXPOSE 10000
 
-# Definir diretório
-WORKDIR /var/www
-
-# Copiar app da etapa anterior
-COPY --from=build /var/www /var/www
-
-# Copiar configuração do nginx
-COPY ./docker/nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expõe a porta
-EXPOSE 80
-
-# Comando para iniciar
-CMD ["nginx", "-g", "daemon off;"]
+CMD php -S 0.0.0.0:10000 -t public
