@@ -3,6 +3,7 @@
 @section('title', 'Lista de Livros')
 
 @section('content')
+    <p class="italic"># O banco de dados retorna ao seu estado original em intervalos de 15 minutos.</p>
     <h2 class="text-3xl font-bold mb-4">Lista de Livros</h2>
     
     <a href="{{ route('books.create') }}" class="mx-1">
