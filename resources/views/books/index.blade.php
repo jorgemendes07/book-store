@@ -17,9 +17,22 @@
     <table class="min-w-full bg-white rounded-lg shadow overflow-hidden ">
         <thead class="bg-orange-200 text-gray-700">
             <tr>
-                <th class="py-2 px-4 text-left">Título</th>
-                <th class="py-2 px-4 text-left">Autor</th>
-                <th class="py-2 px-4 text-left">Ano</th>
+                <th class="py-2 px-4 text-left">
+                    Título
+                    <a href="{{ route('books.index', ['sort' => 'title', 'direction' => 'asc']) }}">
+                    <i class="fa-solid fa-sort-down"></i>
+                    </a>
+                </th>
+                <th class="py-2 px-4 text-left">
+                    Autor
+                    <a href="{{ route('books.index', ['sort' => 'author', 'direction' => 'asc']) }}">
+                    <i class="fa-solid fa-sort-down"></i>
+                </th>
+                <th class="py-2 px-4 text-left">
+                    Ano
+                    <a href="{{ route('books.index', ['sort' => 'year', 'direction' => 'asc']) }}">
+                    <i class="fa-solid fa-sort-down"></i>
+                </th>
                 <th class="py-2 px-4 text-left"></th>
             </tr>
         </thead>

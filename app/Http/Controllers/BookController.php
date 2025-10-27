@@ -6,10 +6,21 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $sortColumn = $request->get('sort', 'id');
+
+        $sortDirection = 'asc';
+
+        $allowedColumns = ['id', 'title', 'author', 'year'];
+
+        if (!in_array($sortColumn, $allowedColumns)) {
+            $sortColumn = 'id';
+        }
+        
         // buscar todos os registros em Books
-        $books = Book::all();
+        $books = Book::orderBy($sortColumn, $sortDirection)->get();
+        //$books = Book::all();
         return view('books.index', compact('books'));
     }
 
