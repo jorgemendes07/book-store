@@ -5,7 +5,7 @@
 @section('content')
 
 <main class="max-w-200 mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Editar Livro</h2>
+    
 
     @if ($errors->any())
         <div style="color:red">
@@ -33,10 +33,16 @@
         <label for="description" class="font-bold  text-gray-700">Descrição:</label>
         <textarea name="description" rows="3" class="border-1 rounded border-orange-300">{{ old('description', $book->description) }}</textarea>
 
-        <button type="submit" class="bg-cyan-500 text-white-100 rounded mb-2 text-white font-bold p-2 hover:bg-cyan-600 cursor-pointer">Atualizar</button>
+        <button type="submit" class="bg-cyan-500 text-white-100 rounded mb-2 text-white font-bold p-2 hover:bg-cyan-600 cursor-pointer">
+            Atualizar
+        </button>
+        <a href="{{ route('books.index') }}" class="bg-gray-300 text-gray-800 p-2 text-center rounded hover:bg-gray-400">
+            Voltar para a Lista
+        </a>
+        
+        
     </form>
-
-    <a href="{{ route('books.index') }}" class="text-2xl">Voltar</a>
+    
 </main>
         
 @endsection

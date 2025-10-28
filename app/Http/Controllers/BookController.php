@@ -44,9 +44,9 @@ class BookController extends Controller
                         ->with('sucess', 'Livro adicionado com sucesso!');
     }
 
-    public function show(string $id)
+    public function show(Book $book)
     {
-        //
+        return view('books.show', compact('book'));
     }
 
     public function edit(Book $book)

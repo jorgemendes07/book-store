@@ -32,11 +32,15 @@
         <label for="description"  class="font-bold  text-gray-700">Descrição:</label>
         <textarea name="description" rows="3" class="border-1 rounded border-orange-300">{{ old('description') }}</textarea>
 
-        <button type="submit" class="bg-cyan-500 text-white-100 rounded mb-2 text-white font-bold p-2 hover:bg-cyan-600 cursor-pointer">Salvar Livro</button>
+        <button type="submit" class="bg-cyan-500 text-white-100 rounded mb-2 text-white font-bold p-2 hover:bg-cyan-600 cursor-pointer">
+            Salvar Livro
+        </button>
+        <a href="{{ route('books.index') }}" class="bg-gray-300 text-gray-800 p-2 text-center rounded hover:bg-gray-400">
+            Voltar para a Lista
+        </a>
+
     </form>
 
-    
-    <a href="{{ route('books.index') }}" class="text-2xl">Voltar</a>
 </main>
     
 @endsection

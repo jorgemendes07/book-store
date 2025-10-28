@@ -43,6 +43,10 @@
                     <td class="py-2 px-4">{{ $book->author }}</td>
                     <td class="py-2 px-4">{{ $book->year }}</td>
                     <td class="py-2 px-4 flex space-x-2">
+                        <a href="{{ route('books.show', $book) }}" class="text-gray-600 hover:text-gray-800">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        
                         <a href="{{ route('books.edit', $book) }}" class="text-cyan-500 hover:text-cyan-600">
                             <i class="fa-solid fa-pen"></i>
                         </a>
