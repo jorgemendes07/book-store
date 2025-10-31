@@ -14,52 +14,56 @@
         <p class="mb-4 text-green-600 font-medium">{{ session('success') }}</p>
     @endif
 
-    <table class="min-w-full bg-white rounded-lg shadow overflow-hidden ">
-        <thead class="bg-orange-200 text-gray-700">
-            <tr>
-                <th class="py-2 px-4 text-left">
-                    Título
-                    <a href="{{ route('books.index', ['sort' => 'title', 'direction' => 'asc']) }}">
-                    <i class="fa-solid fa-sort-down"></i>
-                    </a>
-                </th>
-                <th class="py-2 px-4 text-left">
-                    Autor
-                    <a href="{{ route('books.index', ['sort' => 'author', 'direction' => 'asc']) }}">
-                    <i class="fa-solid fa-sort-down"></i>
-                </th>
-                <th class="py-2 px-4 text-left">
-                    Ano
-                    <a href="{{ route('books.index', ['sort' => 'year', 'direction' => 'asc']) }}">
-                    <i class="fa-solid fa-sort-down"></i>
-                </th>
-                <th class="py-2 px-4 text-left"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($books as $book)
-                <tr class="border-b border-orange-300 hover:bg-orange-100">
-                    <td class="py-2 px-4">{{ $book->title }}</td>
-                    <td class="py-2 px-4">{{ $book->author }}</td>
-                    <td class="py-2 px-4">{{ $book->year }}</td>
-                    <td class="py-2 px-4 flex space-x-2">
-                        <a href="{{ route('books.show', $book) }}" class="text-gray-600 hover:text-gray-800">
-                            <i class="fa-solid fa-eye"></i>
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white rounded-lg shadow overflow-hidden ">
+            <thead class="bg-orange-200 text-gray-700">
+                <tr>
+                    <th class="py-2 px-4 text-left">
+                        Título
+                        <a href="{{ route('books.index', ['sort' => 'title', 'direction' => 'asc']) }}">
+                        <i class="fa-solid fa-sort-down"></i>
                         </a>
-                        
-                        <a href="{{ route('books.edit', $book) }}" class="text-cyan-500 hover:text-cyan-600">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <form action="{{ route('books.destroy', $book) }}" method="POST" onsubmit="return confirm('Deseja realmente excluir?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-red-400 cursor-pointer hover:text-red-700 cursor-pointer">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
-                        </form>
-                    </td>
+                    </th>
+                    <th class="py-2 px-4 text-left">
+                        Autor
+                        <a href="{{ route('books.index', ['sort' => 'author', 'direction' => 'asc']) }}">
+                        <i class="fa-solid fa-sort-down"></i>
+                    </th>
+                    <th class="py-2 px-4 text-left">
+                        Ano
+                        <a href="{{ route('books.index', ['sort' => 'year', 'direction' => 'asc']) }}">
+                        <i class="fa-solid fa-sort-down"></i>
+                    </th>
+                    <th class="py-2 px-4 text-left"></th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach($books as $book)
+                    <tr class="border-b border-orange-300 hover:bg-orange-100">
+                        <td class="py-2 px-4">{{ $book->title }}</td>
+                        <td class="py-2 px-4">{{ $book->author }}</td>
+                        <td class="py-2 px-4">{{ $book->year }}</td>
+                        <td class="py-2 px-4 flex space-x-2">
+                            <a href="{{ route('books.show', $book) }}" class="text-gray-600 hover:text-gray-800">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                            
+                            <a href="{{ route('books.edit', $book) }}" class="text-cyan-500 hover:text-cyan-600">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <form action="{{ route('books.destroy', $book) }}" method="POST" onsubmit="return confirm('Deseja realmente excluir?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-400 cursor-pointer hover:text-red-700 cursor-pointer">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    
 @endsection
